@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:quiz_app/question.dart';
+
 void main() => runApp(QuizApp());
 
 class QuizApp extends StatefulWidget {
@@ -10,7 +12,6 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  
   var _questions = [
     "What's your favorite color?",
     "What's your favorite animal?",
@@ -37,7 +38,7 @@ class _QuizAppState extends State<QuizApp> {
       ),
       body: Column(
         children: [
-          Text(_questions[_questionIndex]),
+          Question(_questions[_questionIndex]),
           RaisedButton(
             child: Text("Answer 1"),
             onPressed: answerQuestion,
