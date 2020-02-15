@@ -10,19 +10,22 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  var questions = [
+  
+  var _questions = [
     "What's your favorite color?",
-    "What's your favorite animal?"
+    "What's your favorite animal?",
     "What's your name?"
   ];
-  var questionIndex = 0;
+
+  var _questionIndex = 0;
 
   void answerQuestion() {
-    setState(() { // Inform the class that something has changed...
-      questionIndex < 2 ? questionIndex++ : questionIndex = 0;
+    setState(() {
+      // Inform the class that something has changed...
+      _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
     });
-    print("Answer choosen!, question index = $questionIndex");
-    print(questions[questionIndex]);
+    print("Answer choosen!, question index = $_questionIndex");
+    print(_questions[_questionIndex]);
   }
 
   @override
@@ -34,7 +37,7 @@ class _QuizAppState extends State<QuizApp> {
       ),
       body: Column(
         children: [
-          Text(questions[questionIndex]),
+          Text(_questions[_questionIndex]),
           RaisedButton(
             child: Text("Answer 1"),
             onPressed: answerQuestion,
