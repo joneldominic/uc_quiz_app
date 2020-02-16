@@ -34,7 +34,7 @@ class _QuizAppState extends State<QuizApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: Text("Personality Quiz"),
+        title: Text("Personality Quiz App"),
       ),
       body: Column(
         children: [
