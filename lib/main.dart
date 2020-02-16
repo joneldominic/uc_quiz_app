@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:quiz_app/answer.dart';
 import 'package:quiz_app/question.dart';
 
 void main() => runApp(QuizApp());
@@ -12,15 +13,24 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  var _questions = [
-    "What's your favorite color?",
-    "What's your favorite animal?",
-    "What's your name?"
+  final _questions = [
+    {
+      "questionText": "What's your favorite color?",
+      "answerTexts": ["Black", "Red", "Green", "Blue"],
+    },
+    {
+      "questionText": "What's your favorite animal?",
+      "answerTexts": ["Dog", "Cat", "Lion"],
+    },
+    {
+      "questionText": "What's your favorite sports?",
+      "answerTexts": ["Badmint", "Basketball", "Boxing", "Swimming"],
+    }
   ];
 
   var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       // Inform the class that something has changed...
       _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
@@ -38,19 +48,16 @@ class _QuizAppState extends State<QuizApp> {
       ),
       body: Column(
         children: [
-          Question(_questions[_questionIndex]),
-          RaisedButton(
-            child: Text("Answer 1"),
-            onPressed: answerQuestion,
+          Question(
+            _questions[_questionIndex]["questionText"],
           ),
-          RaisedButton(
-            child: Text("Answer 2"),
-            onPressed: answerQuestion,
-          ),
-          RaisedButton(
-            child: Text("Answer 3"),
-            onPressed: answerQuestion,
-          ),
+          ...(_questions[_questionIndex]["answerTexts"] as List<String>)
+              .map((answer) {
+            return Answer(
+              answerText: answer,
+              selectHandler: _answerQuestion,
+            );
+          }).toList(),
         ],
       ),
     ));
