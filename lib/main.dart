@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:quiz_app/answer.dart';
-import 'package:quiz_app/question.dart';
+import 'package:quiz_app/quiz.dart';
+import 'package:quiz_app/result.dart';
 
 void main() => runApp(QuizApp());
 
@@ -31,16 +31,18 @@ class _QuizAppState extends State<QuizApp> {
   var _questionIndex = 0;
 
   void _answerQuestion() {
-    if (_questionIndex < _questions.length) {
-      print("We have still question!");
-    }
-
     setState(() {
       // Inform the class that something has changed...
       // _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
 
       _questionIndex++;
     });
+
+    if (_questionIndex < _questions.length) {
+      print("We have still question!");
+    } else {
+      print("Last Question!");
+    }
 
     print("Answer choosen!, question index = $_questionIndex");
     print(_questions[_questionIndex]);
@@ -53,20 +55,13 @@ class _QuizAppState extends State<QuizApp> {
       appBar: AppBar(
         title: Text("Personality Quiz App"),
       ),
-      body: Column(
-        children: [
-          Question(
-            _questions[_questionIndex]["questionText"],
-          ),
-          ...(_questions[_questionIndex]["answerTexts"] as List<String>)
-              .map((answer) {
-            return Answer(
-              answerText: answer,
-              selectHandler: _answerQuestion,
-            );
-          }).toList(),
-        ],
-      ),
+      body: _questionIndex < _questions.length
+          ? Quiz(
+              questions: _questions,
+              questionIndex: _questionIndex,
+              answerQuestion: _answerQuestion,
+            )
+          : Result(),
     ));
   }
 }
