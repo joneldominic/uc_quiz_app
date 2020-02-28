@@ -13,7 +13,7 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  final _questions = [
+  final _questions = const [
     {
       "questionText": "What's your favorite color?",
       "answerTexts": ["Black", "Red", "Green", "Blue"],
@@ -31,10 +31,17 @@ class _QuizAppState extends State<QuizApp> {
   var _questionIndex = 0;
 
   void _answerQuestion() {
+    if (_questionIndex < _questions.length) {
+      print("We have still question!");
+    }
+
     setState(() {
       // Inform the class that something has changed...
-      _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
+      // _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
+
+      _questionIndex++;
     });
+
     print("Answer choosen!, question index = $_questionIndex");
     print(_questions[_questionIndex]);
   }
