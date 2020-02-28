@@ -15,22 +15,47 @@ class QuizApp extends StatefulWidget {
 class _QuizAppState extends State<QuizApp> {
   final _questions = const [
     {
-      "questionText": "What's your favorite color?",
-      "answerTexts": ["Black", "Red", "Green", "Blue"],
+      'questionText': 'What\'s your favorite color?',
+      'answerTexts': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
     },
     {
-      "questionText": "What's your favorite animal?",
-      "answerTexts": ["Dog", "Cat", "Lion"],
+      'questionText': 'What\'s your favorite animal?',
+      'answerTexts': [
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Snake', 'score': 11},
+        {'text': 'Elephant', 'score': 5},
+        {'text': 'Lion', 'score': 9},
+      ],
     },
     {
-      "questionText": "What's your favorite sports?",
-      "answerTexts": ["Badmint", "Basketball", "Boxing", "Swimming"],
-    }
+      'questionText': 'Who\'s your favorite instructor?',
+      'answerTexts': [
+        {'text': 'Regis', 'score': 2},
+        {'text': 'Tabada', 'score': 1},
+        {'text': 'Barera', 'score': 3},
+        {'text': 'Lim', 'score': 10},
+      ],
+    },
   ];
 
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score) {
+    _totalScore++;
+
     setState(() {
       // Inform the class that something has changed...
       // _questionIndex < 2 ? _questionIndex++ : _questionIndex = 0;
@@ -61,7 +86,7 @@ class _QuizAppState extends State<QuizApp> {
               questionIndex: _questionIndex,
               answerQuestion: _answerQuestion,
             )
-          : Result(),
+          : Result(_totalScore, _resetQuiz),
     ));
   }
 }
