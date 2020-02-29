@@ -28,6 +28,7 @@ class Result extends StatelessWidget {
       margin: const EdgeInsets.only(top: 5.0),
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             resultPhrase,
