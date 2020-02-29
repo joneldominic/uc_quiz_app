@@ -54,7 +54,7 @@ class _QuizAppState extends State<QuizApp> {
   }
 
   void _answerQuestion(int score) {
-    _totalScore++;
+    _totalScore+=score;
 
     setState(() {
       // Inform the class that something has changed...
