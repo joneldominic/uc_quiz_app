@@ -24,7 +24,9 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
+      margin: const EdgeInsets.only(top: 5.0),
+      alignment: Alignment.center,
       child: Column(
         children: [
           Text(
